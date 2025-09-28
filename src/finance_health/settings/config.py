@@ -18,7 +18,6 @@ class AppConfig:
     ollama_host: str
     ollama_model: str
     ollama_model_ingest: str | None
-    ingest_mode: str  # 'ai' | 'deterministic' | 'hybrid'
     advice_backend: str  # 'langchain' | 'ollama_direct'
 
 
@@ -43,9 +42,6 @@ def get_config() -> AppConfig:
     ollama_host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
     ollama_model = os.getenv("OLLAMA_MODEL", "deepseek-r1:8b")
     ollama_model_ingest = os.getenv("OLLAMA_MODEL_INGEST", "llama3.2:latest")
-    ingest_mode = os.getenv("INGEST_MODE", "ai").lower()
-    if ingest_mode not in {"ai", "deterministic", "hybrid"}:
-        ingest_mode = "ai"
     advice_backend = os.getenv("ADVICE_BACKEND", "langchain").lower()
     if advice_backend not in {"langchain", "ollama_direct"}:
         advice_backend = "langchain"
@@ -59,7 +55,6 @@ def get_config() -> AppConfig:
         ollama_host=ollama_host,
         ollama_model=ollama_model,
         ollama_model_ingest=ollama_model_ingest,
-        ingest_mode=ingest_mode,
         advice_backend=advice_backend,
     )
     return _config_singleton

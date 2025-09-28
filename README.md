@@ -57,8 +57,6 @@ finance_health/
 ## Modes
 - **INGEST_MODE**:
   - `ai` (default): AI extracts structure from free-form CSV/XLSX text via Ollama
-  - `deterministic`: built-in Polars normalizer tries to map common columns
-  - `hybrid`: try deterministic, fallback to AI on failure
 - **ADVICE_BACKEND**:
   - `langchain` (default): LangChain ReAct agent calling tools to fetch metrics and save advice
   - `ollama_direct`: direct chat with system+user prompt
@@ -73,7 +71,7 @@ APP_ENV=dev
 DATA_DIR=./data
 DB_PATH=./data/metadata.db
 OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=deepseek-r1:32b
+OLLAMA_MODEL=deepseek-r1:8b
 OLLAMA_MODEL_INGEST=llama3.2:latest
 INGEST_MODE=ai
 ADVICE_BACKEND=langchain

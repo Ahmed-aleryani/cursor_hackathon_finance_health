@@ -26,7 +26,7 @@ class Ingestor:
         self.session_id = session_id or create_session()
         self.readers = [CSVReader(), XLSXReader()]
         self.normalizer = BaseNormalizer()
-        self.llm = LLMExtractor() if self.cfg.ingest_mode in {"ai", "hybrid"} else None
+        self.llm = LLMExtractor()
         self.categorizer = AICategorizer()
 
     def ingest_files(self, files: Iterable[Path]) -> Path:
@@ -41,19 +41,10 @@ class Ingestor:
                 continue
             logger.info("Reading %s", f)
             df_raw = reader.read(f)
-            if self.llm is not None and self.cfg.ingest_mode == "ai":
-                df_norm = self.llm.extract_to_normalized(df_raw, source_file=f, session_id=self.session_id)
-                # Fallback if AI returned nothing
-                if df_norm.is_empty():
-                    df_norm = self.normalizer.normalize(df_raw, source_file=f, session_id=self.session_id)
-            elif self.llm is not None and self.cfg.ingest_mode == "hybrid":
-                try:
-                    df_norm = self.normalizer.normalize(df_raw, source_file=f, session_id=self.session_id)
-                except Exception:
-                    df_norm = self.llm.extract_to_normalized(df_raw, source_file=f, session_id=self.session_id)
-                if df_norm.is_empty():
-                    df_norm = self.llm.extract_to_normalized(df_raw, source_file=f, session_id=self.session_id)
-            else:
+            # AI-only ingestion
+            df_norm = self.llm.extract_to_normalized(df_raw, source_file=f, session_id=self.session_id)
+            # Fallback to deterministic if AI returns empty
+            if df_norm.is_empty():
                 df_norm = self.normalizer.normalize(df_raw, source_file=f, session_id=self.session_id)
             dfs.append(df_norm)
 
