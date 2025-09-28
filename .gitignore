@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Envs & tools
+.venv/
+.env
+!.env.example
+.pytest_cache/
+.mypy_cache/
+
+# Editors
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Streamlit
+.streamlit/
+
+# Data (local-only)
+data/
+
+# Build
+dist/
+build/
+*.egg-info/

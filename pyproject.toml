@@ -1,0 +1,41 @@
+[project]
+name = "finance-health"
+version = "0.1.0"
+description = "Local finance health checker with Streamlit, Polars, LangGraph + Ollama"
+authors = [{ name = "Ahmed Aleryani" }]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "polars>=1.9.0",
+    "pyarrow>=17.0.0",
+    "pydantic>=2.9.0",
+    "sqlalchemy>=2.0.35",
+    "python-dotenv>=1.0.1",
+    "streamlit>=1.38.0",
+    "altair>=5.3.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.2.2",
+    "pdfplumber>=0.11.2",
+    "python-docx>=1.1.2",
+    "docx2txt>=0.8",
+    "langgraph>=0.2.31",
+    "langchain>=0.2.12",
+    "langchain-community>=0.2.12",
+    "langchain-ollama>=0.1.0",
+    "ollama>=0.3.1",
+    "rapidfuzz>=3.9.7",
+    "dateparser>=1.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["src/finance_health"]

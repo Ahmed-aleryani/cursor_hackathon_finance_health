@@ -1,0 +1,31 @@
+date,description,amount,currency,account_name,balance
+2025-01-02,Salary ACME Corp,5000,USD,Checking,8500
+2025-01-03,Rent - January,-2200,USD,Checking,6300
+2025-01-05,Groceries: Whole Foods,-180.45,USD,Checking,6119.55
+2025-01-07,Spotify Subscription,-9.99,USD,Checking,6109.56
+2025-01-09,Coffee - Blue Bottle,-6.50,USD,Checking,6103.06
+2025-01-15,Freelance Payment,1200,USD,Checking,7303.06
+2025-01-19,Gas/Transport,-75.23,USD,Checking,7227.83
+2025-01-22,Electricity Bill,-140.10,USD,Checking,7087.73
+2025-01-25,Restaurant - Dinner,-65.00,USD,Checking,7022.73
+2025-01-28,Internet Bill,-59.99,USD,Checking,6962.74
+2025-02-01,Salary ACME Corp,5000,USD,Checking,11962.74
+2025-02-02,Rent - February,-2200,USD,Checking,9762.74
+2025-02-04,Groceries: Trader Joe's,-165.80,USD,Checking,9596.94
+2025-02-07,Apple Music Subscription,-10.99,USD,Checking,9585.95
+2025-02-10,Coffee - Blue Bottle,-7.25,USD,Checking,9578.70
+2025-02-14,Freelance Payment,900,USD,Checking,10478.70
+2025-02-17,Gas/Transport,-82.11,USD,Checking,10396.59
+2025-02-20,Water Bill,-45.30,USD,Checking,10351.29
+2025-02-23,Restaurant - Lunch,-34.20,USD,Checking,10317.09
+2025-02-26,Internet Bill,-59.99,USD,Checking,10257.10
+2025-03-01,Salary ACME Corp,5000,USD,Checking,15257.10
+2025-03-02,Rent - March,-2200,USD,Checking,13057.10
+2025-03-03,Groceries: Whole Foods,-192.15,USD,Checking,12864.95
+2025-03-06,Netflix Subscription,-15.49,USD,Checking,12849.46
+2025-03-09,Coffee - Local Cafe,-5.75,USD,Checking,12843.71
+2025-03-15,Freelance Payment,1500,USD,Checking,14343.71
+2025-03-18,Gas/Transport,-76.89,USD,Checking,14266.82
+2025-03-21,Electricity Bill,-152.40,USD,Checking,14114.42
+2025-03-24,Restaurant - Dinner,-88.60,USD,Checking,14025.82
+2025-03-27,Internet Bill,-59.99,USD,Checking,13965.83
