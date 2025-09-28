@@ -1,5 +1,10 @@
 # Finance Health (Local)
 
+## Cursor Hackathon
+
+- Built during the Cursor hackathon; we used Cursor CLI to plan and build this project end-to-end.
+- Event: [Cursor community event on Luma](https://luma.com/52oq8z1t)
+
 Local-first finance health checker: import bank statements (CSV/XLSX now; PDF/DOCX next), analyze with fast analytics (Polars) and local AI advice (LangChain/LangGraph + Ollama), and view dashboards in Streamlit.
 
 ## Requirements
@@ -78,8 +83,4 @@ Notes:
 - Use smaller models if needed, e.g. `qwen2.5:7b`.
 - Ensure `ollama serve` is running and the model is pulled.
 
-## Cursor
-
-- We used Cursor CLI to plan and build this project end-to-end.
-- Event: [Cursor community event on Luma](https://luma.com/52oq8z1t)
 # cursor_hackathon_finance_health
