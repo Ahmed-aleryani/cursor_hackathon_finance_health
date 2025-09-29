@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import polars as pl
+from dateparser import parse as _parse_date
 
 from ..settings.config import get_config
 from ..utils.logging import setup_logger
@@ -93,8 +94,16 @@ class LLMExtractor:
         df = pl.DataFrame(norm_items)
         # Coerce types
         if "date" in df.columns:
+            # Robust date parsing: try ISO first; fallback to dateparser for free-form
+            df = df.with_columns(pl.col("date").cast(pl.String, strict=False))
+            # Use Python parse to ISO to avoid Polars format inference errors
             df = df.with_columns(
-                pl.col("date").cast(pl.String, strict=False).str.strptime(pl.Date, strict=False).cast(pl.Date)
+                pl.col("date").map_elements(
+                    lambda s: (_parse_date(s).date().isoformat() if isinstance(s, str) and _parse_date(s) else None)
+                ).alias("date")
+            )
+            df = df.with_columns(
+                pl.col("date").str.strptime(pl.Date, format="%Y-%m-%d", strict=False).cast(pl.Date)
             )
         if "amount" in df.columns:
             df = df.with_columns(

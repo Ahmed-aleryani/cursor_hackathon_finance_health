@@ -19,6 +19,9 @@ class AppConfig:
     ollama_model: str
     ollama_model_ingest: str | None
     advice_backend: str  # 'langchain' | 'ollama_direct'
+    ollama_num_predict: int
+    ollama_num_ctx: int
+    ollama_temperature: float
 
 
 _config_singleton: Optional[AppConfig] = None
@@ -46,6 +49,20 @@ def get_config() -> AppConfig:
     if advice_backend not in {"langchain", "ollama_direct"}:
         advice_backend = "langchain"
 
+    # Generation controls
+    try:
+        ollama_num_predict = int(os.getenv("OLLAMA_NUM_PREDICT", "1024"))
+    except Exception:
+        ollama_num_predict = 1024
+    try:
+        ollama_num_ctx = int(os.getenv("OLLAMA_NUM_CTX", "8192"))
+    except Exception:
+        ollama_num_ctx = 8192
+    try:
+        ollama_temperature = float(os.getenv("OLLAMA_TEMPERATURE", "0.3"))
+    except Exception:
+        ollama_temperature = 0.3
+
     _ensure_dirs(data_dir)
 
     _config_singleton = AppConfig(
@@ -56,5 +73,8 @@ def get_config() -> AppConfig:
         ollama_model=ollama_model,
         ollama_model_ingest=ollama_model_ingest,
         advice_backend=advice_backend,
+        ollama_num_predict=ollama_num_predict,
+        ollama_num_ctx=ollama_num_ctx,
+        ollama_temperature=ollama_temperature,
     )
     return _config_singleton

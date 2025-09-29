@@ -9,6 +9,7 @@ from ..analytics.metrics import compute_kpis, monthly_cashflow, category_breakdo
 from ..analytics.scoring import compute_health_score
 from ..analytics.insights import top_expense_transactions, recurring_candidates, subscription_merchants
 from .prompts import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE
+from .sanitize import sanitize_output
 
 
 @dataclass
@@ -51,9 +52,15 @@ class AdviceEngine:
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
+            options={
+                "num_predict": self.cfg.ollama_num_predict,
+                "num_ctx": self.cfg.ollama_num_ctx,
+                "temperature": self.cfg.ollama_temperature,
+            },
             stream=False,
         )
         advice_text = resp.get("message", {}).get("content", "").strip()
+        advice_text = sanitize_output(advice_text)
         return AdviceResult(score=hs.score, components=hs.components, advice_markdown=advice_text)
 
     def generate(self, df: pl.DataFrame, session_id: str | None = None) -> AdviceResult:

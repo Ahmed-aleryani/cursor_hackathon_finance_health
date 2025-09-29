@@ -22,6 +22,7 @@ from .langchain_tools import (
     compute_health_score as tool_compute_health_score,
     save_advice,
 )
+from .sanitize import sanitize_output
 
 SYSTEM_PROMPT = (
     "You are a local financial health advisor. You can call tools to retrieve metrics. "
@@ -70,4 +71,5 @@ class LangChainAdviceAgent:
         _sid = session_id or "unknown"
         result = self.executor.invoke({"session_id": _sid})
         content = result.get("output", "")
+        content = sanitize_output(content)
         return LangChainAdviceResult(score=hs.score, components=hs.components, advice_markdown=content)

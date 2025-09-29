@@ -14,8 +14,10 @@ DATA_DIR={cfg.data_dir}
 DB_PATH={cfg.db_path}
 OLLAMA_HOST={cfg.ollama_host}
 OLLAMA_MODEL={cfg.ollama_model}
-INGEST_MODE={cfg.ingest_mode}
 ADVICE_BACKEND={cfg.advice_backend}
+OLLAMA_NUM_PREDICT={cfg.ollama_num_predict}
+OLLAMA_NUM_CTX={cfg.ollama_num_ctx}
+OLLAMA_TEMPERATURE={cfg.ollama_temperature}
 """.strip()
 )
 
